@@ -333,7 +333,7 @@
     label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
     label.textColor = [UIColor redColor];
     label.textAlignment = NSTextAlignmentRight;
-    label.text = @"regtest";
+    label.text = @"";
     label.tag = 0xbeef;
     [label sizeToFit];
     label.center = CGPointMake(self.view.frame.size.width - label.frame.size.width,
@@ -594,8 +594,9 @@
     [[NSUserDefaults standardUserDefaults] setDouble:balance forKey:BALANCE_KEY];
 
     if (self.percent.hidden) {
-        self.navigationItem.title = [NSString stringWithFormat:@"%@ (%@)", [manager stringForAmount:balance],
-                                     [manager localCurrencyStringForAmount:balance]];
+        //self.navigationItem.title = [NSString stringWithFormat:@"%@ (%@)", [manager stringForAmount:balance],
+        //                             [manager localCurrencyStringForAmount:balance]];
+        self.navigationItem.title = [NSString stringWithFormat:@"%@", [manager stringForAmount:balance]];
     }
 }
 

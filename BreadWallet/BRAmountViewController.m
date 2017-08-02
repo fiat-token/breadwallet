@@ -83,10 +83,13 @@
         [[NSNotificationCenter defaultCenter] addObserverForName:BRWalletBalanceChangedNotification object:nil queue:nil
         usingBlock:^(NSNotification *note) {
             if ([BRPeerManager sharedInstance].syncProgress < 1.0) return; // wait for sync before updating balance
-
-            self.navigationItem.title = [NSString stringWithFormat:@"%@ (%@)",
-                                         [manager stringForAmount:manager.wallet.balance],
-                                         [manager localCurrencyStringForAmount:manager.wallet.balance]];
+            
+            self.navigationItem.title = [NSString stringWithFormat:@"%@",
+                                         [manager stringForAmount:manager.wallet.balance]];
+            
+            //self.navigationItem.title = [NSString stringWithFormat:@"%@ (%@)",
+            //                             [manager stringForAmount:manager.wallet.balance],
+            //                             [manager localCurrencyStringForAmount:manager.wallet.balance]];
         }];
     
     self.backgroundObserver =
@@ -141,9 +144,11 @@
 
     self.swapLeftLabel.hidden = YES;
     self.localCurrencyLabel.hidden = NO;
-    self.localCurrencyLabel.text = [NSString stringWithFormat:@"(%@)",
+    /*self.localCurrencyLabel.text = [NSString stringWithFormat:@"(%@)",
                                     (self.swapped) ? [manager stringForAmount:amount] :
                                     [manager localCurrencyStringForAmount:amount]];
+    */self.localCurrencyLabel.text = [NSString stringWithFormat:@"%@",
+                                    [manager stringForAmount:amount]];
     self.localCurrencyLabel.textColor = (amount > 0) ? [UIColor grayColor] : [UIColor colorWithWhite:0.75 alpha:1.0];
 }
 
@@ -234,11 +239,11 @@
     uint64_t amount =
         [manager amountForLocalCurrencyString:(self.swapped) ? [s substringWithRange:NSMakeRange(1, s.length - 2)] : s];
 
-    self.localCurrencyLabel.text = [NSString stringWithFormat:@"(%@)",
+    /*self.localCurrencyLabel.text = [NSString stringWithFormat:@"(%@)",
                                     (self.swapped) ? [manager stringForAmount:amount] :
-                                    [manager localCurrencyStringForAmount:amount]];
-    self.amountField.text = (self.swapped) ? [manager localCurrencyStringForAmount:amount] :
-                            [manager stringForAmount:amount];
+                                    [manager localCurrencyStringForAmount:amount]];*/
+    self.localCurrencyLabel.text = [NSString stringWithFormat:@"%@", [manager stringForAmount:amount] ];
+    self.amountField.text = [manager stringForAmount:amount];
 
     if (amount == 0) {
         self.amountField.placeholder = self.amountField.text;
@@ -391,7 +396,8 @@ replacementString:(NSString *)string
     if (textVal.length > 0 && textField.placeholder.length > 0) textField.placeholder = nil;
 
     if (textVal.length == 0 && textField.placeholder.length == 0) {
-        textField.placeholder = (self.swapped) ? [manager localCurrencyStringForAmount:0] : [manager stringForAmount:0];
+        //textField.placeholder = (self.swapped) ? [manager localCurrencyStringForAmount:0] : [manager stringForAmount:0];
+        textField.placeholder = [manager stringForAmount:0];
     }
     
     if (self.navigationController.viewControllers.firstObject != self) {

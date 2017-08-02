@@ -464,9 +464,11 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
         }
         else amountController.to = address;
         
-        amountController.navigationItem.title = [NSString stringWithFormat:@"%@ (%@)",
+        /*amountController.navigationItem.title = [NSString stringWithFormat:@"%@ (%@)",
                                                  [manager stringForAmount:manager.wallet.balance],
-                                                 [manager localCurrencyStringForAmount:manager.wallet.balance]];
+                                                 [manager localCurrencyStringForAmount:manager.wallet.balance]];*/
+        amountController.navigationItem.title = [NSString stringWithFormat:@"%@",
+                                                 [manager stringForAmount:manager.wallet.balance]];
         [self.navigationController pushViewController:amountController animated:YES];
         return;
     }
