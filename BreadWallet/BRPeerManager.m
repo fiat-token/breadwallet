@@ -79,7 +79,10 @@ static const struct { uint32_t height; const char *hash; uint32_t timestamp; uin
 };
 
 static const char *dns_seeds[] = {
-    "example.com"
+    "relay1.eternitywall.com",
+    "relay2.eternitywall.com",
+    "relay3.eternitywall.com",
+    "relay4.eternitywall.com",
 };
 
 
