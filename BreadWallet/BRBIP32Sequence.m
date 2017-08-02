@@ -30,8 +30,19 @@
 #import "NSMutableData+Bitcoin.h"
 
 #define BIP32_SEED_KEY "Bitcoin seed"
+
+
+#if BITCOIN_TESTNET
+#define BIP32_XPRV     "\x04\x35\x83\x94"
+#define BIP32_XPUB     "\x04\x35\x87\xCF"
+#elif BITCOIN_REGTEST
+#define BIP32_XPRV     "\x04\x35\x83\x94"
+#define BIP32_XPUB     "\x04\x35\x87\xCF"
+#else
 #define BIP32_XPRV     "\x04\x88\xAD\xE4"
 #define BIP32_XPUB     "\x04\x88\xB2\x1E"
+#endif
+
 
 // BIP32 is a scheme for deriving chains of addresses from a seed value
 // https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
@@ -184,6 +195,8 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     
 #if BITCOIN_TESTNET
     version = BITCOIN_PRIVKEY_TEST;
+#elif BITCOIN_REGTEST
+    version = BITCOIN_PRIVKEY_REGTEST;
 #endif
 
     CKDpriv(&secret, &chain, 0 | BIP32_HARD); // account 0H
@@ -219,6 +232,8 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     
 #if BITCOIN_TESTNET
     version = BITCOIN_PRIVKEY_TEST;
+#elif BITCOIN_REGTEST
+    version = BITCOIN_PRIVKEY_REGTEST;
 #endif
     
     // path m/1H/0 (same as copay uses for bitauth)
@@ -252,6 +267,8 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     
 #if BITCOIN_TESTNET
     version = BITCOIN_PRIVKEY_TEST;
+#elif BITCOIN_REGTEST
+    version = BITCOIN_PRIVKEY_REGTEST;
 #endif
 
     CKDpriv(&secret, &chain, 13 | BIP32_HARD); // m/13H

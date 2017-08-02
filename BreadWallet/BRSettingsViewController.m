@@ -481,6 +481,8 @@ _switch_cell:
     
 #if BITCOIN_TESTNET
     [s replaceCharactersInRange:[s.string rangeOfString:@"%net%"] withString:@"%net% (testnet)"];
+#elif BITCOIN_REGTEST
+    [s replaceCharactersInRange:[s.string rangeOfString:@"%net%"] withString:@"%net% (regtest)"];
 #endif
     [s replaceCharactersInRange:[s.string rangeOfString:@"%ver%"]
      withString:[NSString stringWithFormat:@"%@ - %@",

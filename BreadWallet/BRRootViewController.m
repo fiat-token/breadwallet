@@ -327,7 +327,20 @@
     label.center = CGPointMake(self.view.frame.size.width - label.frame.size.width,
                                self.view.frame.size.height - (label.frame.size.height + 5));
     [self.view addSubview:label];
+#elif BITCOIN_REGTEST
+    UILabel *label = [UILabel new];
+    
+    label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
+    label.textColor = [UIColor redColor];
+    label.textAlignment = NSTextAlignmentRight;
+    label.text = @"regtest";
+    label.tag = 0xbeef;
+    [label sizeToFit];
+    label.center = CGPointMake(self.view.frame.size.width - label.frame.size.width,
+                               self.view.frame.size.height - (label.frame.size.height + 5));
+    [self.view addSubview:label];
 #endif
+
 
 #if SNAPSHOT
     [self.view viewWithTag:0xbeef].hidden = YES;

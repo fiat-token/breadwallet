@@ -51,6 +51,7 @@
 #define GENESIS_BLOCK_HASH   (*(UInt256 *)@(checkpoint_array[0].hash).hexToData.reverse.bytes)
 #define SYNC_STARTHEIGHT_KEY @"SYNC_STARTHEIGHT"
 
+
 #if BITCOIN_TESTNET
 
 static const struct { uint32_t height; const char *hash; uint32_t timestamp; uint32_t target; } checkpoint_array[] = {
@@ -71,6 +72,16 @@ static const char *dns_seeds[] = {
     "testnet-seed.breadwallet.com.", "testnet-seed.bitcoin.petertodd.org.", "testnet-seed.bluematt.me.",
     "testnet-seed.bitcoin.schildbach.de."
 };
+#elif BITCOIN_REGTEST
+
+static const struct { uint32_t height; const char *hash; uint32_t timestamp; uint32_t target; } checkpoint_array[] = {
+    {      0, "0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206", 1296688602, 0x207fffff }
+};
+
+static const char *dns_seeds[] = {
+    "example.com"
+};
+
 
 #else // main net
 
@@ -231,6 +242,13 @@ static const char *dns_seeds[] = {
 
                 NSLog(@"DNS lookup %s", dns_seeds[i]);
                 
+#if BITCOIN_TESTNET
+                NSLog(@"testnet");
+#elif BITCOIN_REGTEST
+                NSLog(@"regtest");
+#else
+                NSLog(@"main");
+#endif
                 if (getaddrinfo(dns_seeds[i], servname.UTF8String, &hints, &servinfo) == 0) {
                     for (p = servinfo; p != NULL; p = p->ai_next) {
                         if (p->ai_family == AF_INET) {
@@ -258,6 +276,9 @@ static const char *dns_seeds[] = {
             for (NSArray *a in peers) [_peers addObjectsFromArray:a];
 
 #if BITCOIN_TESTNET
+            [self sortPeers];
+            return _peers;
+#elif BITCOIN_REGTEST
             [self sortPeers];
             return _peers;
 #endif

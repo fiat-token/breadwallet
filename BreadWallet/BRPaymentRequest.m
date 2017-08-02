@@ -191,6 +191,8 @@
     static NSString *network = @"main";
 #if BITCOIN_TESTNET
     network = @"test";
+#elif BITCOIN_REGTEST
+    network = @"regtest";
 #endif
     NSData *name = [self.label dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableData *script = [NSMutableData data];
@@ -239,6 +241,8 @@ completion:(void (^)(BRPaymentProtocolRequest *req, NSError *error))completion
         
 #if BITCOIN_TESTNET
         network = @"test";
+#elif BITCOIN_REGTEST
+        network = @"regtest";
 #endif
         
         if ([response.MIMEType.lowercaseString isEqual:@"application/bitcoin-paymentrequest"] && data.length <= 50000) {

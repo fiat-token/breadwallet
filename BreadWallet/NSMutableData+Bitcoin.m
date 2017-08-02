@@ -217,6 +217,9 @@ CFAllocatorRef SecureAllocator()
 #if BITCOIN_TESTNET
     pubkeyAddress = BITCOIN_PUBKEY_ADDRESS_TEST;
     scriptAddress = BITCOIN_SCRIPT_ADDRESS_TEST;
+#elif BITCOIN_REGTEST
+    pubkeyAddress = BITCOIN_PUBKEY_ADDRESS_REGTEST;
+    scriptAddress = BITCOIN_SCRIPT_ADDRESS_REGTEST;
 #endif
 
     if (version == pubkeyAddress) {

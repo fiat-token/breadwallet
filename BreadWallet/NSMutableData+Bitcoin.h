@@ -25,8 +25,20 @@
 
 #import <Foundation/Foundation.h>
 
+
+/*
+ from bitcoind, mininode.py:
+MAGIC_BYTES = {
+    "mainnet": b"\xf9\xbe\xb4\xd9",   # mainnet
+    "testnet3": b"\x0b\x11\x09\x07",  # testnet3
+    "regtest": b"\xfa\xbf\xb5\xda",   # regtest
+}*/
+//#define BITCOIN_MAGIC_NUMBER 0xd9b4bef9u
+
 #if BITCOIN_TESTNET
 #define BITCOIN_MAGIC_NUMBER 0x0709110bu
+#elif BITCOIN_REGTEST
+#define BITCOIN_MAGIC_NUMBER 0xdab5bffau
 #else
 #define BITCOIN_MAGIC_NUMBER 0xd9b4bef9u
 #endif

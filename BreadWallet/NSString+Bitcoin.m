@@ -109,6 +109,8 @@ static const UniChar base58chars[] = {
 
 #if BITCOIN_TESTNET
     v = BITCOIN_PUBKEY_ADDRESS_TEST;
+#elif BITCOIN_REGTEST
+    v = BITCOIN_PUBKEY_ADDRESS_REGTEST;
 #endif
 
     if (l == 5 && [elem[0] intValue] == OP_DUP && [elem[1] intValue] == OP_HASH160 && [elem[2] intValue] == 20 &&
@@ -122,6 +124,8 @@ static const UniChar base58chars[] = {
         v = BITCOIN_SCRIPT_ADDRESS;
 #if BITCOIN_TESTNET
         v = BITCOIN_SCRIPT_ADDRESS_TEST;
+#elif BITCOIN_REGTEST
+        v = BITCOIN_SCRIPT_ADDRESS_REGTEST;
 #endif
         [d appendBytes:&v length:1];
         [d appendData:elem[1]];
@@ -147,6 +151,8 @@ static const UniChar base58chars[] = {
 
 #if BITCOIN_TESTNET
     v = BITCOIN_PUBKEY_ADDRESS_TEST;
+#elif BITCOIN_REGTEST
+    v = BITCOIN_PUBKEY_ADDRESS_REGTEST;
 #endif
 
     if (l >= 2 && [elem[l - 2] intValue] <= OP_PUSHDATA4 && [elem[l - 2] intValue] > 0 &&
@@ -159,6 +165,8 @@ static const UniChar base58chars[] = {
         v = BITCOIN_SCRIPT_ADDRESS;
 #if BITCOIN_TESTNET
         v = BITCOIN_SCRIPT_ADDRESS_TEST;
+#elif BITCOIN_REGTEST
+        v = BITCOIN_SCRIPT_ADDRESS_REGTEST;
 #endif
         [d appendBytes:&v length:1];
         [d appendBytes:[elem[l - 1] hash160].u8 length:sizeof(UInt160)];
@@ -308,6 +316,8 @@ static const UniChar base58chars[] = {
         
 #if BITCOIN_TESTNET
     return (version == BITCOIN_PUBKEY_ADDRESS_TEST || version == BITCOIN_SCRIPT_ADDRESS_TEST) ? YES : NO;
+#elif BITCOIN_REGTEST
+    return (version == BITCOIN_PUBKEY_ADDRESS_REGTEST || version == BITCOIN_SCRIPT_ADDRESS_REGTEST) ? YES : NO;
 #endif
 
     return (version == BITCOIN_PUBKEY_ADDRESS || version == BITCOIN_SCRIPT_ADDRESS) ? YES : NO;
@@ -320,6 +330,8 @@ static const UniChar base58chars[] = {
     if (d.length == 33 || d.length == 34) { // wallet import format: https://en.bitcoin.it/wiki/Wallet_import_format
 #if BITCOIN_TESTNET
         return (*(const uint8_t *)d.bytes == BITCOIN_PRIVKEY_TEST) ? YES : NO;
+#elif BITCOIN_REGTEST
+        return (*(const uint8_t *)d.bytes == BITCOIN_PRIVKEY_REGTEST) ? YES : NO;
 #else
         return (*(const uint8_t *)d.bytes == BITCOIN_PRIVKEY) ? YES : NO;
 #endif

@@ -165,6 +165,8 @@ int BRSecp256k1PointMul(BRECPoint *p, const UInt256 *i)
     
 #if BITCOIN_TESTNET
     version = BITCOIN_PRIVKEY_TEST;
+#elif BITCOIN_REGTEST
+    version = BITCOIN_PRIVKEY_REGTEST;
 #endif
     
     if (! d || d.length == 28) d = privateKey.base58ToData;
@@ -225,6 +227,8 @@ int BRSecp256k1PointMul(BRECPoint *p, const UInt256 *i)
 
 #if BITCOIN_TESTNET
     version = BITCOIN_PRIVKEY_TEST;
+#elif BITCOIN_REGTEST
+    version = BITCOIN_PRIVKEY_REGTEST;
 #endif
 
     [d appendBytes:&version length:1];
@@ -268,6 +272,8 @@ int BRSecp256k1PointMul(BRECPoint *p, const UInt256 *i)
 
 #if BITCOIN_TESTNET
     version = BITCOIN_PUBKEY_ADDRESS_TEST;
+#elif BITCOIN_REGTEST
+    version = BITCOIN_PUBKEY_ADDRESS_REGTEST;
 #endif
     
     [d appendBytes:&version length:1];

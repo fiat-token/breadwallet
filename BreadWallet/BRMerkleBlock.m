@@ -28,8 +28,14 @@
 #import "NSData+Bitcoin.h"
 
 #define MAX_TIME_DRIFT    (2*60*60)     // the furthest in the future a block is allowed to be timestamped
+#if BITCOIN_REGTEST
+#define MAX_PROOF_OF_WORK 0x207fffffu
+#else
 #define MAX_PROOF_OF_WORK 0x1d00ffffu   // highest value for difficulty target (higher values are less difficult)
+#endif
 #define TARGET_TIMESPAN   (14*24*60*60) // the targeted timespan between difficulty target adjustments
+
+
 
 // from https://en.bitcoin.it/wiki/Protocol_specification#Merkle_Trees
 // Merkle trees are binary trees of hashes. Merkle trees in bitcoin use a double SHA-256, the SHA-256 hash of the
@@ -254,7 +260,11 @@ totalTransactions:(uint32_t)totalTransactions hashes:(NSData *)hashes flags:(NSD
 #if BITCOIN_TESTNET
     //TODO: implement testnet difficulty rule check
     return YES; // don't worry about difficulty on testnet for now
+#elif BITCOIN_REGTEST
+    //TODO: implement testnet difficulty rule check
+    return YES; // don't worry about difficulty on testnet for now
 #endif
+    
 
     if ((_height % BLOCK_DIFFICULTY_INTERVAL) != 0) return (_target == previous.target) ? YES : NO;
 
