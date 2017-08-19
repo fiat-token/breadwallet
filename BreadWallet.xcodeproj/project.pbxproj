@@ -1756,7 +1756,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = AYLH53T9GR;
+				DEVELOPMENT_TEAM = 8469TGZ2S5;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BreadWallet/BreadWallet-Prefix.pch";
@@ -1779,7 +1779,7 @@
 					"-frandom-seed=$@",
 					"-DBITCOIN_REGTEST=1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvaccaro.breadwallet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eternitywall.virtualtoken;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BreadWallet/breadwallet-Bridging-Header.h";
@@ -1797,7 +1797,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = AYLH53T9GR;
+				DEVELOPMENT_TEAM = 8469TGZ2S5;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BreadWallet/BreadWallet-Prefix.pch";
@@ -1814,7 +1814,7 @@
 					"-frandom-seed=$@",
 					"-DBITCOIN_REGTEST=1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvaccaro.breadwallet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eternitywall.virtualtoken;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BreadWallet/breadwallet-Bridging-Header.h";
