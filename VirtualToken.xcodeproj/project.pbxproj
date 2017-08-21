@@ -437,7 +437,7 @@
 		75CE194E1B9642EB000778E4 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		75CE50B51B5216F100DBC18C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BreadWalletTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		75CE50BD1B525D1B00DBC18C /* breadwallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = breadwallet.entitlements; path = ../breadwallet/breadwallet.entitlements; sourceTree = "<group>"; };
-		75D5F3BE191EC270004AB296 /* breadwallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breadwallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75D5F3BE191EC270004AB296 /* virtualtoken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = virtualtoken.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D5F3C9191EC270004AB296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75D5F3CD191EC270004AB296 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75D5F3CF191EC270004AB296 /* VirtualToken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VirtualToken-Prefix.pch"; sourceTree = "<group>"; };
@@ -845,7 +845,7 @@
 		75D5F3BF191EC270004AB296 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75D5F3BE191EC270004AB296 /* breadwallet.app */,
+				75D5F3BE191EC270004AB296 /* virtualtoken.app */,
 				75D5F3E5191EC270004AB296 /* VirtualTokenTests.xctest */,
 				BAE12BE51B2DEE7F00895CC5 /* TodayExtension.appex */,
 				31D68B501C23B6C10030FAAA /* VirtualTokenUITests.xctest */,
@@ -1048,9 +1048,9 @@
 			productReference = 31D68B501C23B6C10030FAAA /* VirtualTokenUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		75D5F3BD191EC270004AB296 /* breadwallet */ = {
+		75D5F3BD191EC270004AB296 /* virtualtoken */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75D5F3F6191EC270004AB296 /* Build configuration list for PBXNativeTarget "breadwallet" */;
+			buildConfigurationList = 75D5F3F6191EC270004AB296 /* Build configuration list for PBXNativeTarget "virtualtoken" */;
 			buildPhases = (
 				75D5F3BA191EC270004AB296 /* Sources */,
 				75D5F3BB191EC270004AB296 /* Frameworks */,
@@ -1065,9 +1065,9 @@
 				BAE12BF11B2DEE7F00895CC5 /* PBXTargetDependency */,
 				BA913BF91BD57E4D005A7C0E /* PBXTargetDependency */,
 			);
-			name = breadwallet;
+			name = virtualtoken;
 			productName = BreadWallet;
-			productReference = 75D5F3BE191EC270004AB296 /* breadwallet.app */;
+			productReference = 75D5F3BE191EC270004AB296 /* virtualtoken.app */;
 			productType = "com.apple.product-type.application";
 		};
 		75D5F3E4191EC270004AB296 /* VirtualTokenTests */ = {
@@ -1234,7 +1234,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				75D5F3BD191EC270004AB296 /* breadwallet */,
+				75D5F3BD191EC270004AB296 /* virtualtoken */,
 				BAE12BE41B2DEE7F00895CC5 /* TodayExtension */,
 				75D5F3E4191EC270004AB296 /* VirtualTokenTests */,
 				31D68B4F1C23B6C10030FAAA /* VirtualTokenUITests */,
@@ -1449,7 +1449,7 @@
 /* Begin PBXTargetDependency section */
 		31D68B561C23B6C10030FAAA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75D5F3BD191EC270004AB296 /* breadwallet */;
+			target = 75D5F3BD191EC270004AB296 /* virtualtoken */;
 			targetProxy = 31D68B551C23B6C10030FAAA /* PBXContainerItemProxy */;
 		};
 		757FC2531ADA30D100A1FDF7 /* PBXTargetDependency */ = {
@@ -1459,7 +1459,7 @@
 		};
 		75D5F3EB191EC270004AB296 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75D5F3BD191EC270004AB296 /* breadwallet */;
+			target = 75D5F3BD191EC270004AB296 /* virtualtoken */;
 			targetProxy = 75D5F3EA191EC270004AB296 /* PBXContainerItemProxy */;
 		};
 		BA913BED1BD57E4D005A7C0E /* PBXTargetDependency */ = {
@@ -2038,7 +2038,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75D5F3F6191EC270004AB296 /* Build configuration list for PBXNativeTarget "breadwallet" */ = {
+		75D5F3F6191EC270004AB296 /* Build configuration list for PBXNativeTarget "virtualtoken" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75D5F3F7191EC270004AB296 /* Debug */,
