@@ -39,7 +39,7 @@
 #import "NSMutableData+Bitcoin.h"
 #import "NSData+Bitcoin.h"
 #import "BREventManager.h"
-#import "breadwallet-Swift.h"
+#import "virtualtoken-Swift.h"
 
 #define SCAN_TIP      NSLocalizedString(@"Scan someone else's QR code to get their bitcoin address. "\
                                          "You can send a payment to anyone with an address.", nil)
