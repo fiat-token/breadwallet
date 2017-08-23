@@ -126,6 +126,9 @@
 
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    
+    self.amountField.text = @"";
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -143,7 +146,7 @@
                       [manager amountForString:self.amountField.text];
 
     self.swapLeftLabel.hidden = YES;
-    self.localCurrencyLabel.hidden = NO;
+    self.localCurrencyLabel.hidden = YES;
     /*self.localCurrencyLabel.text = [NSString stringWithFormat:@"(%@)",
                                     (self.swapped) ? [manager stringForAmount:amount] :
                                     [manager localCurrencyStringForAmount:amount]];
@@ -380,7 +383,8 @@ replacementString:(NSString *)string
             if (! [numberFormatter numberFromString:textVal]) textVal = nil;
         }
         else if (textVal.length == 0 && [string isEqual:@"0"]) { // if first digit is zero, append decimal point
-            textVal = [zeroStr stringByAppendingString:numberFormatter.currencyDecimalSeparator];
+            //textVal = [zeroStr stringByAppendingString:numberFormatter.currencyDecimalSeparator];
+            textVal = [textVal stringByReplacingCharactersInRange:range withString:string];
         }
         else if (range.location > decimalLoc && [string isEqual:@"0"]) { // handle multiple zeros after decimal point
             textVal = [textVal stringByReplacingCharactersInRange:range withString:string];

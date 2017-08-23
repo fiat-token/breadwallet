@@ -88,7 +88,7 @@
     
     self.scheme = url.scheme;
     
-    if ([url.scheme isEqual:@"bitcoin"]) {
+    if ([url.scheme isEqual:@"veur"]) {
         self.paymentAddress = url.host;
     
         //TODO: correctly handle unknown but required url arguments (by reporting the request invalid)
@@ -123,7 +123,7 @@
 
 - (NSString *)string
 {
-    if (! [self.scheme isEqual:@"bitcoin"]) return self.r;
+    if (! [self.scheme isEqual:@"veur"]) return self.r;
 
     NSMutableString *s = [NSMutableString stringWithString:@"veur:"];
     NSMutableArray *q = [NSMutableArray array];

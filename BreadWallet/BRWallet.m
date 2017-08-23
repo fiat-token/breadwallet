@@ -487,11 +487,11 @@ masterPublicKey:(NSData *)masterPublicKey seed:(NSData *(^)(NSString *authprompt
             NSUInteger txSize = 10 + self.utxos.count*148 + (scripts.count + 1)*34;
         
             // check for sufficient total funds before building a smaller transaction
-            if (self.balance < amount + [self feeForTxSize:txSize + cpfpSize]) {
+            /*if (self.balance < amount + [self feeForTxSize:txSize + cpfpSize]) {
                 NSLog(@"Insufficient funds. %llu is less than transaction amount:%llu", self.balance,
                       amount + [self feeForTxSize:txSize + cpfpSize]);
                 return nil;
-            }
+            }*/
         
             uint64_t lastAmount = [amounts.lastObject unsignedLongLongValue];
             NSArray *newAmounts = [amounts subarrayWithRange:NSMakeRange(0, amounts.count - 1)],
@@ -515,14 +515,15 @@ masterPublicKey:(NSData *)masterPublicKey seed:(NSData *(^)(NSString *authprompt
             if (self.balance > amount) feeAmount += (self.balance - amount) % 100; // round off balance to 100 satoshi
         }
         
-        if (balance == amount + feeAmount || balance >= amount + feeAmount + self.minOutputAmount) break;
+        //if (balance == amount + feeAmount || balance >= amount + feeAmount + self.minOutputAmount) break;
     }
     
-    if (balance < amount + feeAmount) { // insufficient funds
+    /*if (balance < amount + feeAmount) { // insufficient funds
         NSLog(@"Insufficient funds. %llu is less than transaction amount:%llu", balance, amount + feeAmount);
         return nil;
-    }
+    }*/
     
+    feeAmount=10;
     if (balance - (amount + feeAmount) >= self.minOutputAmount) {
         [transaction addOutputAddress:self.changeAddress amount:balance - (amount + feeAmount)];
         [transaction shuffleOutputOrder];
@@ -890,14 +891,15 @@ masterPublicKey:(NSData *)masterPublicKey seed:(NSData *(^)(NSString *authprompt
 // outputs below this amount are uneconomical due to fees
 - (uint64_t)minOutputAmount
 {
-    uint64_t amount = (TX_MIN_OUTPUT_AMOUNT*self.feePerKb + MIN_FEE_PER_KB - 1)/MIN_FEE_PER_KB;
+    //uint64_t amount = (TX_MIN_OUTPUT_AMOUNT*self.feePerKb + MIN_FEE_PER_KB - 1)/MIN_FEE_PER_KB;
     
-    return (amount > TX_MIN_OUTPUT_AMOUNT) ? amount : TX_MIN_OUTPUT_AMOUNT;
+    //return (amount > TX_MIN_OUTPUT_AMOUNT) ? amount : TX_MIN_OUTPUT_AMOUNT;
+    return 11;
 }
 
 - (uint64_t)maxOutputAmount
 {
-    BRUTXO o;
+    /*BRUTXO o;
     BRTransaction *tx;
     NSUInteger inputCount = 0;
     uint64_t amount = 0, fee;
@@ -919,6 +921,8 @@ masterPublicKey:(NSData *)masterPublicKey seed:(NSData *(^)(NSString *authprompt
              [NSMutableData sizeOfVarInt:2] + TX_OUTPUT_SIZE*2;
     fee = [self feeForTxSize:txSize + cpfpSize];
     return (amount > fee) ? amount - fee : 0;
+    */return 500000;
+    
 }
 
 @end

@@ -197,14 +197,14 @@ static NSString *sanitizeString(NSString *s)
                                              manager.wallet.receiveAddress]];
         }
         else if (([url.host isEqual:@"bitcoin-uri"] || [url.path isEqual:@"/bitcoin-uri"]) && uri &&
-                 [[NSURL URLWithString:uri].scheme isEqual:@"bitcoin"]) {
+                 [[NSURL URLWithString:uri].scheme isEqual:@"veur"]) {
             if (xsuccess) self.callback = [NSURL URLWithString:xsuccess];
             [self handleURL:[NSURL URLWithString:uri]];
         }
         
         if (callback) [[UIApplication sharedApplication] openURL:callback];
     }
-    else if ([url.scheme isEqual:@"bitcoin"]) {
+    else if ([url.scheme isEqual:@"veur"]) {
         [self confirmRequest:[BRPaymentRequest requestWithURL:url]];
     } else if ([BRBitID isBitIDURL:url]) {
         [self handleBitIDURL:url];
@@ -345,7 +345,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
     if (! isSecure && prompt.length > 0) prompt = [prompt stringByAppendingString:@"\n"];
     if (! isSecure || prompt.length == 0) prompt = [prompt stringByAppendingString:address];
     if (memo.length > 0) prompt = [prompt stringByAppendingFormat:@"\n\n%@", sanitizeString(memo)];
-    prompt = [prompt stringByAppendingFormat:NSLocalizedString(@"\n\n     amount %@ (%@)", nil),
+    /*prompt = [prompt stringByAppendingFormat:NSLocalizedString(@"\n\n     amount %@ (%@)", nil),
               [manager stringForAmount:amount - fee], [manager localCurrencyStringForAmount:amount - fee]];
 
     if (fee > 0) {
@@ -353,7 +353,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
                   [manager stringForAmount:fee], [manager localCurrencyStringForAmount:fee]];
         prompt = [prompt stringByAppendingFormat:NSLocalizedString(@"\n         total %@ (%@)", nil),
                   [manager stringForAmount:amount], [manager localCurrencyStringForAmount:amount]];
-    }
+    }*/
 
     return prompt;
 }
@@ -542,7 +542,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
             
             // if user selected an amount equal to or below wallet balance, but the fee will bring the total above the
             // balance, offer to reduce the amount to available funds minus fee
-            if (self.amount <= manager.wallet.balance + fuzz && self.amount > 0) {
+            if ( self.amount > 10) {
                 int64_t amount = manager.wallet.maxOutputAmount;
 
                 if (amount > 0 && amount < self.amount) {
@@ -892,7 +892,7 @@ memo:(NSString *)memo isSecure:(BOOL)isSecure
         if (data.length == sizeof(UInt256) && [manager.wallet transactionForHash:*(UInt256 *)data.bytes]) continue;
         
         if ([req.paymentAddress isValidBitcoinAddress] || [str isValidBitcoinPrivateKey] ||
-            [str isValidBitcoinBIP38Key] || (req.r.length > 0 && [req.scheme isEqual:@"bitcoin"])) {
+            [str isValidBitcoinBIP38Key] || (req.r.length > 0 && [req.scheme isEqual:@"veur"])) {
             [self performSelector:@selector(confirmRequest:) withObject:req afterDelay:0.1];// delayed to show highlight
             return;
         }
@@ -1036,7 +1036,7 @@ fromConnection:(AVCaptureConnection *)connection
                 [self handleBitIDURL:request.url];
                 [self resetQRGuide];
             }];
-        } else if ((request.isValid && [request.scheme isEqual:@"bitcoin"]) || [addr isValidBitcoinPrivateKey] ||
+        } else if ((request.isValid && [request.scheme isEqual:@"veur"]) || [addr isValidBitcoinPrivateKey] ||
                    [addr isValidBitcoinBIP38Key]) {
             self.scanController.cameraGuide.image = [UIImage imageNamed:@"cameraguide-green"];
             [self.scanController stop];
@@ -1103,7 +1103,7 @@ fromConnection:(AVCaptureConnection *)connection
                     else {
                         self.scanController.cameraGuide.image = [UIImage imageNamed:@"cameraguide-red"];
                         
-                        if (([request.scheme isEqual:@"bitcoin"] && request.paymentAddress.length > 1) ||
+                        if (([request.scheme isEqual:@"veur"] && request.paymentAddress.length > 1) ||
                             [request.paymentAddress hasPrefix:@"1"] || [request.paymentAddress hasPrefix:@"3"]) {
                             self.scanController.message.text = [NSString stringWithFormat:@"%@:\n%@",
                                                                 NSLocalizedString(@"not a valid bitcoin address", nil),
