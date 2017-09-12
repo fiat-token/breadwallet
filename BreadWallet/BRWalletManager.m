@@ -1185,6 +1185,7 @@ completion:(void (^)(BRTransaction *tx, uint64_t fee, NSError *error))completion
 
 - (NSString *)stringForAmount:(int64_t)amount
 {
+    amount = llabs(amount/100)*100;
     return [self.format stringFromNumber:[(id)[NSDecimalNumber numberWithLongLong:amount]
             decimalNumberByMultiplyingByPowerOf10:-self.format.maximumFractionDigits]];
 }
