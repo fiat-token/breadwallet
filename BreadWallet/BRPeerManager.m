@@ -45,7 +45,7 @@
 #endif
 
 #define FIXED_PEERS          @"FixedPeers"
-#define PROTOCOL_TIMEOUT     20.0
+#define PROTOCOL_TIMEOUT     2000.0
 #define MAX_CONNECT_FAILURES 20 // notify user of network problems after this many connect failures in a row
 #define CHECKPOINT_COUNT     (sizeof(checkpoint_array)/sizeof(*checkpoint_array))
 #define GENESIS_BLOCK_HASH   (*(UInt256 *)@(checkpoint_array[0].hash).hexToData.reverse.bytes)
@@ -79,9 +79,9 @@ static const struct { uint32_t height; const char *hash; uint32_t timestamp; uin
 };
 
 static const char *dns_seeds[] = {
-    "relay1.eternitywall.com",
-    "relay2.eternitywall.com",
-    "relay3.eternitywall.com",
+    //"relay1.eternitywall.com",
+    //"relay2.eternitywall.com",
+    //"relay3.eternitywall.com",
     "relay4.eternitywall.com",
 };
 
@@ -354,7 +354,7 @@ static const char *dns_seeds[] = {
             b = self.blocks[uint256_obj(b.prevBlock)];
         }
     }
-
+    //NSLog(@"%@ **** ", GENESIS_BLOCK_HASH);
     [locators addObject:uint256_obj(GENESIS_BLOCK_HASH)];
     return locators;
 }

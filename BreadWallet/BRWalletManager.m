@@ -48,6 +48,7 @@
 #define FEE_PER_KB_URL       @"https://api.breadwallet.com/fee-per-kb"
 #define TICKER_URL           @"https://api.breadwallet.com/rates"
 #define TICKER_FAILOVER_URL  @"https://bitpay.com/rates"
+ 
 
 #define SEED_ENTROPY_LENGTH   (128/8)
 #define SEC_ATTR_SERVICE      @"org.voisine.breadwallet"
@@ -240,9 +241,9 @@ static NSDictionary *getKeychainDict(NSString *key, NSError **error)
     self.format.negativeFormat = [self.format.positiveFormat
                                   stringByReplacingCharactersInRange:[self.format.positiveFormat rangeOfString:@"#"]
                                   withString:@"-#"];
-    self.format.currencyCode = @"vEUR";
+    self.format.currencyCode = @"vTKN";
     self.format.currencySymbol = BITS NARROW_NBSP;
-    self.format.maximumFractionDigits = 4; // Set decimal : 1 vEUR = 10000 Satoshi = 100 microBits
+    self.format.maximumFractionDigits = 4; // Set decimal : 1 vTKN = 10000 Satoshi = 100 microBits
     self.format.minimumFractionDigits = 0; // iOS 8 bug, minimumFractionDigits now has to be set after currencySymbol
     self.format.maximum = @(MAX_MONEY/(int64_t)pow(10.0, self.format.maximumFractionDigits));
     _localFormat = [NSNumberFormatter new];
